@@ -1,9 +1,5 @@
 FLAGS = *.c
 
-comp :
-	gcc -o a.out ${FLAGS}
-
-exec :
-	gcc -o a.out ${FLAGS} 
+make : 
+	gcc -Wall -Wextra -g -o a.out ${FLAGS} `sdl2-config --cflags --libs` 
 	./a.out
-	exit
