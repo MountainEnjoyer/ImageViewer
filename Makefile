@@ -1,4 +1,9 @@
 FLAGS = *.c
 
-Make:
-	gcc -o ${FLAGS} 
+comp :
+	gcc -o a.out ${FLAGS}
+
+exec :
+	gcc -o a.out ${FLAGS} 
+	./a.out
+	exit
