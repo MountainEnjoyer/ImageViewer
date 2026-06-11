@@ -9,9 +9,13 @@ int main () {
 
   Uint8 r,g,b;
   r = 0xFF;
-  g=b=0;
+  g=b=0x00;
   Uint32 color = SDL_MapRGB(psurface->format,r,g,b);
-  SDL_FillRect(psurface, NULL, color);
+
+  int x = 50;
+  int y = 50;
+  SDL_Rect pixel = (SDL_Rect){x,y,1,1};
+  SDL_FillRect(psurface, &pixel, color);
   SDL_UpdateWindowSurface(pwindow);
   SDL_Delay(3000);
 
