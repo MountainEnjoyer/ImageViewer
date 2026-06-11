@@ -41,7 +41,17 @@ int main () {
     }
   }
   SDL_UpdateWindowSurface(pwindow);
-  SDL_Delay(3000);
+  
+  int app_running = 1;
+  while (app_running) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+        app_running = 0;
+      }
+    }
+    SDL_Delay(100);
+  }
 
   return 0;
 }
