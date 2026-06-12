@@ -29,7 +29,6 @@
 ```
   We read the 4th line wich countain the max color value and then free the 'ignore' variable. 
 ```
-  //reads the max color value
   fgets(pthrowaway, 1000, in);
   free(pthrowaway);
 ```
