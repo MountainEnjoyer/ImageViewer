@@ -32,3 +32,47 @@
   fgets(pthrowaway, 1000, in);
   free(pthrowaway);
 ```
+
+Now just have to declare our window with our dimensions, and the surface inside window:
+```
+  SDL_Window *pwindow = SDL_CreateWindow("Image Viewer", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
+  SDL_Surface *psurface = SDL_GetWindowSurface(pwindow);
+```
+Now we just have to read each octet and assign its value to a pixel (in order).
+To do that we first declare that the variable color will only contain 4 octets. 
+```
+  Uint32 color = 0;
+```
+Then declare a rectangle of 1,1 dimensions wich will be our drawing pixel, we define its coordinates as 0,0 wich we will update in a simple manner.
+We then define 3 variables r,g,b as 1 octet each. we then read the char(octet) from stdin and with the surface's pointer's format as its format value, we then assign is to the color variable. 
+Then update pixel's x, and y.
+And we then draw the pixel for each pixel given and update the window after all.
+```
+  SDL_Rect pixel = (SDL_Rect){0,0,1,1};
+  for (int y=0; y<height; y++) {
+    for (int x=0; x<width; x++) {
+      Uint8 r,g,b;
+      r = (char) getchar();
+      g = (char) getchar();
+      b = (char) getchar();
+      color = SDL_MapRGB(psurface->format,r,g,b);
+      pixel.x = x;
+      pixel.y = y;
+      SDL_FillRect(psurface, &pixel, color);
+    }
+  }
+  SDL_UpdateWindowSurface(pwindow);
+```
+  We then run the event handling with a simple variable used as 'yes or no' and if the quit event is received, we exit the while loop.
+```
+  int app_running = 1;
+  while (app_running) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+        app_running = 0;
+      }
+    }
+    SDL_Delay(100);
+  }
+```
