@@ -13,20 +13,22 @@
   Then we repeat 2 times the step : read the input and put it in our pointer.<br/>
   We do it 2 times because the first line of the ppm file is the format and the second a comment. 
 ```
-  //read first line (specifier P3 or P6) ignored
   fgets(pthrowaway, 1000, in);
-  //read comment line 
   fgets(pthrowaway, 1000, in);
   ```
-  And Last but not least we read the 3rd line as it stored the width and height of the image we wanna display. 
+  And Last but not least we read the 3rd line as it stores the width and height of the image we wanna display.<br/>
+  With fgets we get a charachter array (char*) wich isn't an int. To convert it we declare our variable as int and give them the value -1.<br/>
+  Then we use sscanf to cute the two numbers, from the stdin that we read and stor above, and put them in our variables via their adresses.
   ```
-  //read width and height
   char *pdimensions = calloc(1000, sizeof(char));
   fgets(pdimensions, 1000, in);
   int width = -1;
   int height = -1;
   sscanf(pdimensions, "%d %d\n", &width, &height);
   free(pdimensions);
+```
+  We then free the 'ignore' variable. 
+```
   //reads the max color value
   fgets(pthrowaway, 1000, in);
   free(pthrowaway);```
