@@ -5,14 +5,21 @@
 
 # Explaination
   We first import the std librairies and SDL2.<br/>
-  Then,
+  Then we point to the input and allocate memory to another pointer.
   ```
-  FILE *in = stdin;
-  char *pthrowaway = calloc(1000, sizeof(char));
+  FILE *in = stdin; // reads stdin
+  char *pthrowaway = calloc(1000, sizeof(char)); // allocate large chunk of memory
+```
+  Then we repeat 2 times the step : read the input and put it in our pointer.<br/>
+  We do it 2 times because the first line of the ppm file is the format and the second a comment. 
+```
   //read first line (specifier P3 or P6) ignored
   fgets(pthrowaway, 1000, in);
   //read comment line 
   fgets(pthrowaway, 1000, in);
+  ```
+  And Last but not least we read the 3rd line as it stored the width and height of the image we wanna display. 
+  ```
   //read width and height
   char *pdimensions = calloc(1000, sizeof(char));
   fgets(pdimensions, 1000, in);
