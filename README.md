@@ -18,7 +18,7 @@
   ```
   And Last but not least we read the 3rd line as it stores the width and height of the image we wanna display.<br/>
   With fgets we get a charachter array (char*) wich isn't an int. To convert it we declare our variable as int and give them the value -1.<br/>
-  Then we use sscanf to cute the two numbers, from the stdin that we read and stor above, and put them in our variables via their adresses.
+  Then we use sscanf to cute the two numbers, from the stdin that we read and stor above, and put them in our variables via their adresses. Don't forget to free the memory.
   ```
   char *pdimensions = calloc(1000, sizeof(char));
   fgets(pdimensions, 1000, in);
@@ -27,8 +27,9 @@
   sscanf(pdimensions, "%d %d\n", &width, &height);
   free(pdimensions);
 ```
-  We then free the 'ignore' variable. 
+  We read the 4th line wich countain the max color value and then free the 'ignore' variable. 
 ```
   //reads the max color value
   fgets(pthrowaway, 1000, in);
-  free(pthrowaway);```
+  free(pthrowaway);
+```
